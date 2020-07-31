@@ -1,6 +1,9 @@
 import styled from "styled-components";
 export const StyledSidebar = styled.aside`
-  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  /* padding-top: 10px; */
+  padding: 15px 12px 0;
   height: 100%;
   width: 24.3%;
   max-width: 350px;
@@ -9,7 +12,6 @@ export const StyledSidebar = styled.aside`
   top: 0;
   left: 0;
   background: #900020;
-  overflow-x: hidden;
   a {
     padding: 6px 8px 6px 16px;
     text-decoration: none;
@@ -29,10 +31,14 @@ export const StyledSidebar = styled.aside`
 `;
 
 export const StyledMenu = styled.menu`
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
   width: 100%;
-  position: absolute;
-  left: 0;
-  bottom: 0;
 `;
 
-export const StyledUsers = styled.section``;
+export const StyledUsers = styled.section`
+  flex: 1;
+  overflow-x: auto;
+`;
+export const StyledMain = styled.section``;

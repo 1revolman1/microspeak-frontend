@@ -1,5 +1,5 @@
 import React from "react";
-import { StyledSidebar, StyledMenu, StyledUsers } from "./styled";
+import { StyledSidebar, StyledMenu, StyledUsers, StyledMain } from "./styled";
 import UserTab from "./components/UserTab";
 import Searcher from "./components/Searcher";
 import CreateChat from "./components/CreateChat";
@@ -60,15 +60,19 @@ export default function Sidebar() {
   console.log(links);
   return (
     <StyledSidebar>
-      <UserTab self={true} user={users[0]} />
-      <Searcher />
+      <StyledMain>
+        <UserTab self={true} user={users[0]} />
+        <Searcher />
+      </StyledMain>
       <StyledUsers>
         {users.map((user, index) => {
           return <UserTab key={`id${index}`} self={false} user={user} />;
         })}
       </StyledUsers>
       <StyledMenu>
-        <CreateChat>+ Chat</CreateChat>
+        <CreateChat>
+          <span> </span> Chat
+        </CreateChat>
         <MenuNavigation links={links} />
       </StyledMenu>
     </StyledSidebar>

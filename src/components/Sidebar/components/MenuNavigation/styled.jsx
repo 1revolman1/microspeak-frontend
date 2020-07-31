@@ -5,7 +5,7 @@ export const StyledUl = styled.ul`
   justify-content: space-between;
   list-style: none;
   overflow-x: auto;
-  margin-top: 40px;
+  margin-top: 110px;
   a {
     display: flex;
     flex-direction: column;
@@ -17,6 +17,12 @@ export const StyledUl = styled.ul`
     &:hover {
       border-bottom: 4px solid white;
     }
+    &:first-of-type {
+      margin-left: 0;
+    }
+    &:last-of-type {
+      margin-right: 0;
+    }
     span {
       margin: 4px 0;
       font-family: "Roboto", sans-serif;
@@ -24,8 +30,6 @@ export const StyledUl = styled.ul`
       font-weight: 300;
       font-size: 12px;
       line-height: 14px;
-      /* identical to box height */
-
       color: rgba(255, 255, 255, 0.5);
     }
   }
