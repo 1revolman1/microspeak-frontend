@@ -1,6 +1,6 @@
 import styled from "styled-components";
 export const StyledSidebar = styled.aside`
-  padding: 21px 12px;
+  padding: 10px 12px;
   height: 100%;
   width: 24.3%;
   max-width: 350px;
@@ -10,7 +10,6 @@ export const StyledSidebar = styled.aside`
   left: 0;
   background: #900020;
   overflow-x: hidden;
-  padding-top: 20px;
   a {
     padding: 6px 8px 6px 16px;
     text-decoration: none;
@@ -28,3 +27,12 @@ export const StyledSidebar = styled.aside`
     padding-top: 15px;
   }
 `;
+
+export const StyledMenu = styled.menu`
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+`;
+
+export const StyledUsers = styled.section``;

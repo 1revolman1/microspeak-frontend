@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const StyledDiv = styled.div`
   position: relative;
   width: 100%;
-  margin: 20px 0;
+  margin: 20px 0 25px;
 
   svg {
     position: absolute;

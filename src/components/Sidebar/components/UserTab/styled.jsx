@@ -4,6 +4,7 @@ export const StyledSection = styled.section`
   position: relative;
   display: flex;
   align-items: center;
+  margin: 15px 0;
 `;
 
 export const StyledIMGDiv = styled.div`
