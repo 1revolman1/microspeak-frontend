@@ -8,8 +8,8 @@ export const StyledButton = styled.button`
   justify-content: center;
   align-items: center;
   padding: 24px 0;
-  border-top: 2px solid white;
-  border-bottom: 2px solid white;
+  border-top: 2px solid rgba(255, 255, 255, 0.8);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.8);
   background: #900020;
   color: white;
   font-family: "Roboto", sans-serif;

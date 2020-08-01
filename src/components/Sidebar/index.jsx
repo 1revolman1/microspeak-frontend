@@ -66,7 +66,14 @@ export default function Sidebar() {
       </StyledMain>
       <StyledUsers>
         {users.map((user, index) => {
-          return <UserTab key={`id${index}`} self={false} user={user} />;
+          return (
+            <UserTab
+              key={`id${index}`}
+              active={index === 2 ? true : false}
+              self={false}
+              user={user}
+            />
+          );
         })}
       </StyledUsers>
       <StyledMenu>

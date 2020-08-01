@@ -33,5 +33,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "main": "index.js",
+  "repository": "https://github.com/1revolman1/microspeak-frontend.git/",
+  "author": "1revolman1 <1revolman1@gmail.com>",
+  "license": "MIT"
 }

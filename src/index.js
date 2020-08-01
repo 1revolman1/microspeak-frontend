@@ -8,22 +8,23 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
       {/* <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/users">Users</Link>
-            </li>
-          </ul>
-        </nav> */}
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/about">About</Link>
+          </li>
+          <li>
+            <Link to="/users">Users</Link>
+          </li>
+        </ul>
+      </nav> */}
       <Switch>
+        <Route path="/login" />
         <Route path="/about" component={() => <h1>About</h1>} />
         <Route path="/users" component={() => <h1>Users</h1>} />
-        <Route path="/" component={MainPage} />
+        <Route exact path="/" component={MainPage} />
       </Switch>
     </Router>
   </React.StrictMode>,

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { StyledUl } from "./styled";
 import {
   BrowserRouter as Router,
@@ -19,15 +19,6 @@ export default function MenuNavigation({ links }) {
           </Link>
         );
       })}
-      {/* <p>fgsfdsfds</p> <p>fgsfdsfds</p>
-      <p>fgsfdsfds</p> <p>fgsfdsfds</p> <p>fgsfdsfds</p> <p>fgsfdsfds</p>
-      <p>fgsfdsfds</p>
-      <p>fgsfdsfds</p>
-      <p>fgsfdsfds</p>
-      <p>fgsfdsfds</p>
-      <p>fgsfdsfds</p>
-      <p>fgsfdsfds</p>
-      <p>fgsfdsfds</p> */}
     </StyledUl>
   );
 }

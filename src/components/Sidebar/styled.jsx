@@ -2,8 +2,8 @@ import styled from "styled-components";
 export const StyledSidebar = styled.aside`
   display: flex;
   flex-direction: column;
-  /* padding-top: 10px; */
-  padding: 15px 12px 0;
+  padding-top: 15px;
+  /* padding: 15px 12px 0; */
   height: 100%;
   width: 24.3%;
   max-width: 350px;
@@ -31,6 +31,7 @@ export const StyledSidebar = styled.aside`
 `;
 
 export const StyledMenu = styled.menu`
+  padding: 0 12px;
   display: flex;
   flex-direction: column;
   margin-top: auto;
@@ -40,5 +41,19 @@ export const StyledMenu = styled.menu`
 export const StyledUsers = styled.section`
   flex: 1;
   overflow-x: auto;
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+    outline: 1px solid rgba(255, 255, 255, 0.3);
+  }
 `;
-export const StyledMain = styled.section``;
+export const StyledMain = styled.section`
+  padding: 0 12px;
+`;

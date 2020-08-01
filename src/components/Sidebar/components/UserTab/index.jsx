@@ -7,7 +7,7 @@ import {
   StyledADDITIONDivGEARS,
 } from "./styled";
 
-export default function UserTab({ self, user }) {
+export default function UserTab({ self, user, active }) {
   const typeOFState = {
     online: "#25CC49",
     offline: "#E00707",
@@ -19,10 +19,10 @@ export default function UserTab({ self, user }) {
   //     "https://i.pinimg.com/originals/92/76/59/92765932dde11ac137b9c232812e153e.jpg",
   // };
   //   const self = true;
+  // const active = true;
   const [status, setStatus] = useState(typeOFState.offline);
-
   return (
-    <StyledSection>
+    <StyledSection self={self} active={active}>
       <StyledIMGDiv>
         <img src={user.avatar} alt="avatar of user" />
         <svg
@@ -42,11 +42,11 @@ export default function UserTab({ self, user }) {
           />
         </svg>
       </StyledIMGDiv>
-      <StyledDATADiv>
+      <StyledDATADiv active={active}>
         <h3>{user.name}</h3>
       </StyledDATADiv>
       {!self && (
-        <StyledADDITIONDivDOTS>
+        <StyledADDITIONDivDOTS active={active}>
           <div className="dot"></div>
         </StyledADDITIONDivDOTS>
       )}

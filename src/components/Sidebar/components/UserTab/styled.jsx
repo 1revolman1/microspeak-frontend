@@ -4,7 +4,9 @@ export const StyledSection = styled.section`
   position: relative;
   display: flex;
   align-items: center;
-  margin: 15px 0;
+  /* margin: 15px 0; */
+  padding: ${(props) => (props.self ? 0 : "8px 12px")};
+  background: ${(props) => (props.active ? "white" : "")};
 `;
 
 export const StyledIMGDiv = styled.div`
@@ -35,12 +37,12 @@ export const StyledDATADiv = styled.div`
     font-size: 14px;
     line-height: 16px;
     user-select: none;
-    color: #ffffff;
+    color: ${(props) => (props.active ? "#900020" : "#ffffff")};
+    /* color: #ffffff; */
   }
 `;
 
 const bias = "10px";
-const color = "#FFFFFF";
 export const StyledADDITIONDivDOTS = styled.div`
   position: relative;
   display: flex;
@@ -51,14 +53,14 @@ export const StyledADDITIONDivDOTS = styled.div`
     width: 5px;
     height: 5px;
     border-radius: 50%;
-    background-color: ${color};
+    background-color: ${(props) => (props.active ? "#900020" : "white")};
     &:before {
       content: "";
       position: absolute;
       width: 5px;
       height: 5px;
       border-radius: 50%;
-      background-color: ${color};
+      background-color: ${(props) => (props.active ? "#900020" : "white")};
       right: ${bias};
       transition: right 0.3s ease-out;
     }
@@ -68,7 +70,7 @@ export const StyledADDITIONDivDOTS = styled.div`
       width: 5px;
       height: 5px;
       border-radius: 50%;
-      background-color: ${color};
+      background-color: ${(props) => (props.active ? "#900020" : "white")};
       left: 10px;
       transition: left 0.3s ease-out;
     }
