@@ -4,10 +4,18 @@ import "./assets/css/index.scss";
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import MainPage from "./pages/Main";
+import LoginPage from "./pages/LoginPage";
+import SigupPage from "./pages/SigupPage";
+
+import { AuthLayout } from "./auth";
+
+import PrivateRoute from "./auth/PrivateRoute";
+
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
-      {/* <nav>
+    <AuthLayout>
+      <Router>
+        {/* <nav>
         <ul>
           <li>
             <Link to="/">Home</Link>
@@ -20,13 +28,16 @@ ReactDOM.render(
           </li>
         </ul>
       </nav> */}
-      <Switch>
-        <Route path="/login" />
-        <Route path="/about" component={() => <h1>About</h1>} />
-        <Route path="/users" component={() => <h1>Users</h1>} />
-        <Route exact path="/" component={MainPage} />
-      </Switch>
-    </Router>
+        <Switch>
+          <Route path="/login" component={LoginPage} />
+          <Route path="/registration" component={SigupPage} />
+          <PrivateRoute path="/admin" component={() => <h1>Admin Page</h1>} />
+          {/* <Route path="/about" component={() => <h1>About</h1>} />
+          <Route path="/users" component={() => <h1>Users</h1>} /> */}
+          <PrivateRoute exact path="/" component={MainPage} />
+        </Switch>
+      </Router>
+    </AuthLayout>
   </React.StrictMode>,
   document.getElementById("root")
 );
