@@ -6,7 +6,7 @@ function Signup() {
   const [auth, setAuth] = useState({ email: "", password: "" });
   const clickSubmit = function (event) {
     event.preventDefault();
-    fetch("http://localhost:3001/api/user/registration", {
+    fetch("http://localhost:3001/api/authentication/registration", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

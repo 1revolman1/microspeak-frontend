@@ -1,21 +1,38 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useReducer } from "react";
 export const AuthContext = React.createContext();
 
 export const AuthLayout = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(null);
   const [data, setData] = useState({});
   const onLogin = async (auth) => {
-    let response = await fetch("http://localhost:3001/api/user/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(auth),
-    });
+    let response = await fetch(
+      "http://localhost:3001/api/authentication/login",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify(auth),
+      }
+    );
     let json = await response.json();
     setIsAuthenticated(json.login);
-    // return isAuthenticated;
   };
+  const checkIfLogged = async () => {
+    let response = await fetch(
+      `http://localhost:3001/api/authentication/self`,
+      {
+        method: "GET",
+        credentials: "include",
+      }
+    );
+    let json = await response.json();
+    setIsAuthenticated(json.login);
+  };
+  useEffect(() => {
+    checkIfLogged();
+  }, []);
   //   const onLogin = async (email, password) => {
   //     // await firebase
   //     //     .auth()
