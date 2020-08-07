@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { Card, Form, Input, Button } from "./styled";
 import { AuthContext } from "../../auth";
@@ -8,7 +8,7 @@ export default function LoginPage() {
   const [auth, setAuth] = useState({ email: "", password: "" });
   const clickSubmit = async (event) => {
     event.preventDefault();
-    return onLogin(auth);
+    return onLogin({ ...auth });
   };
   return !isAuthenticated ? (
     <Card>

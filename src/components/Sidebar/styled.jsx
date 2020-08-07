@@ -6,7 +6,7 @@ export const StyledSidebar = styled.aside`
   /* padding: 15px 12px 0; */
   height: 100%;
   width: 24.3%;
-  max-width: 350px;
+  /* max-width: 350px; */
   position: fixed;
   z-index: 1;
   top: 0;
