@@ -56,6 +56,8 @@ export const AuthLayout = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(null);
   const [data, setData] = useState({});
   const onLogin = async (auth) => {
+    const fingerprint = await _getFingerprint();
+    console.log(fingerprint);
     let response = await fetch(
       "http://localhost:3001/api/authentication/login",
       {
@@ -73,6 +75,7 @@ export const AuthLayout = ({ children }) => {
   };
   const checkIfLogged = async () => {
     const fingerprint = await _getFingerprint();
+    console.log(fingerprint);
     let JWT = localStorage.getItem("JWT");
     if (JWT) {
       JWT = JWT.split(".")[1];
@@ -93,7 +96,6 @@ export const AuthLayout = ({ children }) => {
           }
         );
         let json = await response.json();
-        console.log(json);
         localStorage.setItem("JWT", json.accessToken);
         setIsAuthenticated(json.login);
       } else {
@@ -106,37 +108,6 @@ export const AuthLayout = ({ children }) => {
   useEffect(() => {
     checkIfLogged();
   }, []);
-  //   const onLogin = async (email, password) => {
-  //     // await firebase
-  //     //     .auth()
-  //     //     .setPersistence(firebase.auth.Auth.Persistence.SESSION);
-  //     // await firebase
-  //     //     .auth()
-  //     //     .signInWithEmailAndPassword(email, password)
-  //     //     .catch(function (error) {
-  //     //         if (error) {
-  //     //             const a = firebase
-  //     //                 .auth()
-  //     //                 .createUserWithEmailAndPassword(email, password);
-  //     //         }
-  //     //     });
-  //     // setAuth(!!firebase.auth().currentUser);
-  //   };
-
-  //   const onLogout = () => {
-  //     // firebase.auth().signOut();
-  //     setAuth(false);
-  //   };
-
-  //   useEffect(() => {
-  //     // let isMouth = true;
-  //     // firebase.auth().onAuthStateChanged(() => {
-  //     //     isMouth && setAuth(!!firebase.auth().currentUser);
-  //     // });
-  //     // return () => {
-  //     //     isMouth = false;
-  //     // };
-  //   }, []);
 
   return (
     <AuthContext.Provider
