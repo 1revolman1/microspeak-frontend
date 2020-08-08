@@ -102,12 +102,56 @@ export const AuthLayout = ({ children }) => {
         setIsAuthenticated(auth);
       }
     } else {
-      setIsAuthenticated(false);
+      let response = await fetch(
+        "http://localhost:3001/api/authentication/refresh-token",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            fingerprint,
+          }),
+          credentials: "include",
+        }
+      );
+      let json = await response.json();
+      localStorage.setItem("JWT", json.accessToken);
+      setIsAuthenticated(json.login);
     }
   };
   useEffect(() => {
     checkIfLogged();
   }, []);
+  //   const onLogin = async (email, password) => {
+  //     // await firebase
+  //     //     .auth()
+  //     //     .setPersistence(firebase.auth.Auth.Persistence.SESSION);
+  //     // await firebase
+  //     //     .auth()
+  //     //     .signInWithEmailAndPassword(email, password)
+  //     //     .catch(function (error) {
+  //     //         if (error) {
+  //     //             const a = firebase
+  //     //                 .auth()
+  //     //                 .createUserWithEmailAndPassword(email, password);
+  //     //         }
+  //     //     });
+  //     // setAuth(!!firebase.auth().currentUser);
+  //   };
+
+  //   const onLogout = () => {
+  //     // firebase.auth().signOut();
+  //     setAuth(false);
+  //   };
+
+  //   useEffect(() => {
+  //     // let isMouth = true;
+  //     // firebase.auth().onAuthStateChanged(() => {
+  //     //     isMouth && setAuth(!!firebase.auth().currentUser);
+  //     // });
+  //     // return () => {
+  //     //     isMouth = false;
+  //     // };
+  //   }, []);
 
   return (
     <AuthContext.Provider
