@@ -6,7 +6,7 @@ export const StyledButton = styled.div`
   width: 50px;
   height: 50px;
   transition:all 0.2s linear;
-  img {
+  svg {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -14,6 +14,9 @@ export const StyledButton = styled.div`
     width: 50%;
     height: auto;
     object-fit: cover;
+    path,g{
+      transition:all 0.2s linear;
+    }
   }
   ${(props) => {
     return (
@@ -21,6 +24,12 @@ export const StyledButton = styled.div`
       props.status === true &&
       css`
         background: #787878;
+        svg {
+          path,
+          g {
+            fill: white;
+          }
+        }
       `
     );
   }}
@@ -30,6 +39,12 @@ export const StyledButton = styled.div`
       props.status === false &&
       css`
         background: white;
+        svg {
+          path,
+          g {
+            fill: black;
+          }
+        }
       `
     );
   }}

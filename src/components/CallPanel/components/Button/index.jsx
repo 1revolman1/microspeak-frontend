@@ -1,16 +1,24 @@
 import React, { useState } from "react";
 import { StyledButton } from "./styled";
 
-export default function Button({ src, type, toDo, statu, block }) {
+export default function Button({
+  src,
+  type,
+  toDo = () => console.log("Click"),
+  finc,
+  statu,
+}) {
   const [status, setStatus] = useState(statu);
   return (
     <StyledButton
       type={type}
       status={status}
-      onClick={(e) => setStatus(!status)}
+      onClick={(e) => {
+        toDo();
+        setStatus(!status);
+      }}
     >
-      {block}
-      <img src={src} alt="It's functional button with svg"></img>
+      {src}
     </StyledButton>
   );
 }

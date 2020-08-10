@@ -8,6 +8,12 @@ export const StyledCall = styled.section`
   height: 48vh;
   background: rgba(144, 0, 32, 0.3);
   padding: 21px 12px;
+  transition: all 0.5s linear;
+  ${({ fullscreen }) =>
+    fullscreen === true &&
+    css`
+      height: 100vh;
+    `}
 `;
 
 export const StyledUserIcon = styled.div`
