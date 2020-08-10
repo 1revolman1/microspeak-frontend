@@ -6,7 +6,8 @@ import { StyledChat } from "./styled";
 export default function ChatPanel({ fullscreen, setFullscreen }) {
   return (
     <StyledChat fullscreen={fullscreen}>
-      <ChatMessage />
+      <ChatMessage whose="MY" />
+      <ChatMessage whose="OTHER" />
     </StyledChat>
   );
 }

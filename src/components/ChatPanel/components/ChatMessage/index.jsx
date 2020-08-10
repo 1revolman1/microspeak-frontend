@@ -1,6 +1,16 @@
 import React from "react";
-import {} from "./styled";
+import { StyledMessageContainer, StyledMessage } from "./styled";
 
 export default function ChatMessage({ whose, date }) {
-  return <div></div>;
+  return (
+    <StyledMessageContainer whose={whose}>
+      <span>14.28</span>
+      <div>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt
+        </p>
+      </div>
+    </StyledMessageContainer>
+  );
 }

@@ -1,9 +1,10 @@
 import styled, { css } from "styled-components";
 
-export const StyledChat = styled.div`
+export const StyledChat = styled.section`
+  padding: 18px 10%;
   position: relative;
   height: 52vh;
-  background: yellow;
+  background: white;
   transition: all 0.5s linear;
   ${({ fullscreen }) =>
     fullscreen === true &&
