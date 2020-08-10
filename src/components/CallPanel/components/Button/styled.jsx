@@ -5,7 +5,7 @@ export const StyledButton = styled.div`
   border-radius: 50%;
   width: 50px;
   height: 50px;
-  background: #787878;
+  transition:all 0.2s linear;
   img {
     position: absolute;
     top: 50%;
@@ -15,17 +15,38 @@ export const StyledButton = styled.div`
     height: auto;
     object-fit: cover;
   }
-  ${(props) =>
-    props.type === "default" &&
-    css`
-      background: white;
-      color: black;
-    `}
+  ${(props) => {
+    return (
+      props.type === "default" &&
+      props.status === true &&
+      css`
+        background: #787878;
+      `
+    );
+  }}
+  ${(props) => {
+    return (
+      props.type === "default" &&
+      props.status === false &&
+      css`
+        background: white;
+      `
+    );
+  }}
   ${(props) =>
     props.type === "endcall" &&
+    props.status === true &&
     css`
-      background: red;
+      background: green;
+      transform: rotate(130deg);
     `}
+    ${(props) =>
+      props.type === "endcall" &&
+      props.status === false &&
+      css`
+        background: red;
+        transform: rotate(0deg);
+      `}
   ${(props) =>
     props.type === "fullscreen" &&
     css`

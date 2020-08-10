@@ -70,7 +70,7 @@ export const AuthLayout = ({ children }) => {
       }
     );
     let json = await response.json();
-    localStorage.setItem("JWT", json.accessToken);
+    json.login && localStorage.setItem("JWT", json.accessToken);
     setIsAuthenticated(json.login);
   };
   const checkIfLogged = async () => {
@@ -96,12 +96,12 @@ export const AuthLayout = ({ children }) => {
           }
         );
         let json = await response.json();
-        localStorage.setItem("JWT", json.accessToken);
+        json.login && localStorage.setItem("JWT", json.accessToken);
         setIsAuthenticated(json.login);
       } else {
         setIsAuthenticated(auth);
       }
-    } else {
+    } else if (doesHttpOnlyCookieExist("JWT")) {
       let response = await fetch(
         "http://localhost:3001/api/authentication/refresh-token",
         {
@@ -114,8 +114,22 @@ export const AuthLayout = ({ children }) => {
         }
       );
       let json = await response.json();
-      localStorage.setItem("JWT", json.accessToken);
+      json.login && localStorage.setItem("JWT", json.accessToken);
       setIsAuthenticated(json.login);
+    } else {
+      setIsAuthenticated(false);
+    }
+  };
+  const doesHttpOnlyCookieExist = (cookiename) => {
+    var d = new Date();
+    d.setTime(d.getTime() + 1000);
+    var expires = "expires=" + d.toUTCString();
+
+    document.cookie = cookiename + "=new_value;path=/;" + expires;
+    if (document.cookie.indexOf(cookiename + "=") == -1) {
+      return true;
+    } else {
+      return false;
     }
   };
   useEffect(() => {

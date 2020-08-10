@@ -8,6 +8,7 @@ import {
   StyledNavigationGroupIcon,
 } from "./styled";
 
+import { ReactComponent as Chart } from "./assets/Chat.svg";
 import Button from "./components/Button";
 
 export default function CallPanel() {
@@ -34,12 +35,33 @@ export default function CallPanel() {
         </StyledSpeakerIcon>
       </StyledFriendIcons>
       <StyledNavigation>
-        <Button src={require("./assets/Chat.svg")} type={"default"} />
+        <Button
+          block={<Chart />}
+          src={require("./assets/Chat.svg")}
+          type={"default"}
+          statu={true}
+        />
         <StyledNavigationGroupIcon>
-          <Button src={require("./assets/Speaker.svg")} type={"default"} />
-          <Button src={require("./assets/microphone.svg")} type={"default"} />
-          <Button src={require("./assets/NoCamera.svg")} type={"default"} />
-          <Button src={require("./assets/EndCall.svg")} type={"endcall"} />
+          <Button
+            src={require("./assets/Speaker.svg")}
+            type={"default"}
+            statu={false}
+          />
+          <Button
+            src={require("./assets/microphone.svg")}
+            type={"default"}
+            statu={false}
+          />
+          <Button
+            src={require("./assets/NoCamera.svg")}
+            type={"default"}
+            statu={true}
+          />
+          <Button
+            src={require("./assets/EndCall.svg")}
+            type={"endcall"}
+            statu={false}
+          />
         </StyledNavigationGroupIcon>
         <Button src={require("./assets/FullScreen.svg")} type={"fullscreen"} />
       </StyledNavigation>
