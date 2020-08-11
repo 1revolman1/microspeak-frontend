@@ -5,6 +5,7 @@ export const StyledMessageContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 40px;
+  margin-top: auto;
   div {
     max-width: 40%;
     background: #900020;

@@ -1,8 +1,6 @@
 import styled, { css } from "styled-components";
 
 export const StyledChat = styled.section`
-  padding: 18px 10% 0;
-  overflow-y: scroll;
   position: relative;
   height: 52vh;
   background: white;
@@ -12,5 +10,18 @@ export const StyledChat = styled.section`
     css`
       height: 0vh;
       padding: 0;
+      div {
+        padding: 0;
+      }
     `}
+`;
+
+export const ChatMessages = styled.div`
+  display: flex;
+  flex-direction: column;
+  /* justify-content: flex-end; */
+  padding: 18px 10% 0;
+  height: 80%;
+  transition: all 0.5s linear;
+  overflow-y: scroll;
 `;
