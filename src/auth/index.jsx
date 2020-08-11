@@ -66,7 +66,7 @@ export const AuthLayout = ({ children }) => {
           "Content-Type": "application/json",
         },
         credentials: "include",
-        body: JSON.stringify(auth),
+        body: JSON.stringify({ ...auth, fingerprint }),
       }
     );
     let json = await response.json();

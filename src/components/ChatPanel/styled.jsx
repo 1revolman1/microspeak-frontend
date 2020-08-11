@@ -1,7 +1,8 @@
 import styled, { css } from "styled-components";
 
 export const StyledChat = styled.section`
-  padding: 18px 10%;
+  padding: 18px 10% 0;
+  overflow-y: scroll;
   position: relative;
   height: 52vh;
   background: white;
@@ -10,5 +11,6 @@ export const StyledChat = styled.section`
     fullscreen === true &&
     css`
       height: 0vh;
+      padding: 0;
     `}
 `;
