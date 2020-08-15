@@ -2,6 +2,7 @@ import styled, { css } from "styled-components";
 
 export const StyledContainer = styled.div`
   width: 100%;
+  padding: 10px 10%;
   background: white;
   display: flex;
   justify-content: center;
@@ -19,7 +20,9 @@ export const StyledContainer = styled.div`
 `;
 
 export const StyledInput = styled.input`
-  width: 80%;
+  /* width: 80%; */
+
+  width: 100%;
   margin: 0 auto;
   background: rgba(144, 0, 32, 0.3);
   border-radius: 10px;

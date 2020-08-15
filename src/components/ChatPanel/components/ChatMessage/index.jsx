@@ -1,16 +1,43 @@
-import React from "react";
-import { StyledMessageContainer, StyledMessage } from "./styled";
-
-export default function ChatMessage({ whose, date }) {
+import React, { useRef, useEffect } from "react";
+import {
+  StyledContainer,
+  StyledMessage,
+  StyledImg,
+  StyledMessageContainer,
+} from "./styled";
+import Video from "./components/VideoComponent";
+// {
+//   type:["MESSAGE","IMG","FILE","VIDEO"]
+// }
+export default function ChatMessage({ type, whose, date }) {
   return (
-    <StyledMessageContainer whose={whose}>
-      <span>14.28</span>
-      <div>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt
-        </p>
-      </div>
-    </StyledMessageContainer>
+    <StyledContainer>
+      <StyledImg whose={whose}>
+        <img
+          alt="Avatar of your speaker"
+          src="https://i.pinimg.com/originals/92/76/59/92765932dde11ac137b9c232812e153e.jpg"
+        />
+      </StyledImg>
+      <StyledMessageContainer whose={whose}>
+        <span>Daria, 14.28</span>
+        <StyledMessage whose={whose} type={type}>
+          {type === "MESSAGE" && (
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt
+            </p>
+          )}
+          {type === "IMG" && (
+            <img
+              alt="Your img"
+              src="https://cs8.pikabu.ru/post_img/big/2017/10/18/11/1508356314177978739.jpg"
+            />
+          )}
+          {type === "VIDEO" && (
+            <Video src="https://html5css.ru/edithtm/movie.mp4" />
+          )}
+        </StyledMessage>
+      </StyledMessageContainer>
+    </StyledContainer>
   );
 }
