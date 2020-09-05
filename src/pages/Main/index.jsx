@@ -6,11 +6,21 @@ import ChatPanel from "../../components/ChatPanel";
 
 export default function Main() {
   const [fullscreen, setFullscreen] = useState(false);
+  const [chatRegime, setChatRegime] = useState(false);
 
   return (
     <App>
-      <CallPanel fullscreen={fullscreen} setFullscreen={setFullscreen} />
-      <ChatPanel fullscreen={fullscreen} setFullscreen={setFullscreen} />
+      <CallPanel
+        chatRegime={chatRegime}
+        fullscreen={fullscreen}
+        setFullscreen={setFullscreen}
+        setChatRegime={setChatRegime}
+      />
+      <ChatPanel
+        chatRegime={chatRegime}
+        fullscreen={fullscreen}
+        setFullscreen={setFullscreen}
+      />
     </App>
   );
 }

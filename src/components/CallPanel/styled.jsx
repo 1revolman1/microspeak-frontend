@@ -6,14 +6,24 @@ export const StyledCall = styled.section`
   justify-content: space-between;
   position: relative;
   height: 48vh;
-  background: rgba(144, 0, 32, 0.3);
+  background: #deb3bc;
+  /* background: rgba(144, 0, 32, 0.3); */
   padding: 21px 12px;
   transition: all 0.5s linear;
-  ${({ fullscreen }) =>
-    fullscreen === true &&
-    css`
-      height: 100vh;
-    `}
+  z-index: 5;
+  top: 0;
+  position: sticky;
+  ${({ fullscreen, chatRegime }) => {
+    if (chatRegime)
+      return css`
+        max-height: 130px;
+      `;
+    if (fullscreen)
+      return css`
+        height: 100vh;
+      `;
+    // chatRegime && css`    // `;
+  }}
 `;
 
 export const StyledUserIcon = styled.div`

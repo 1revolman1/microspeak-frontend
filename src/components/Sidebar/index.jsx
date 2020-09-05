@@ -5,37 +5,45 @@ import Searcher from "./components/Searcher";
 import CreateChat from "./components/CreateChat";
 import MenuNavigation from "./components/MenuNavigation";
 
-const users = [
+const my = [
   {
     name: "Nina Kirova",
     avatar:
       "https://i.pinimg.com/originals/92/76/59/92765932dde11ac137b9c232812e153e.jpg",
   },
-  {
-    name: "Alex Kirova1",
-    avatar:
-      "https://i.pinimg.com/originals/92/76/59/92765932dde11ac137b9c232812e153e.jpg",
-  },
-  {
-    name: "Mila Kirova2",
-    avatar:
-      "https://i.pinimg.com/originals/92/76/59/92765932dde11ac137b9c232812e153e.jpg",
-  },
-  {
-    name: "Jane Kirova3",
-    avatar:
-      "https://i.pinimg.com/originals/92/76/59/92765932dde11ac137b9c232812e153e.jpg",
-  },
-  {
-    name: "Marta Kirova4",
-    avatar:
-      "https://i.pinimg.com/originals/92/76/59/92765932dde11ac137b9c232812e153e.jpg",
-  },
-  {
-    name: "Sofia Kirova5",
-    avatar:
-      "https://i.pinimg.com/originals/92/76/59/92765932dde11ac137b9c232812e153e.jpg",
-  },
+];
+
+const users = [
+  // {
+  //   name: "Nina Kirova",
+  //   avatar:
+  //     "https://i.pinimg.com/originals/92/76/59/92765932dde11ac137b9c232812e153e.jpg",
+  // },
+  // {
+  //   name: "Alex Kirova1",
+  //   avatar:
+  //     "https://i.pinimg.com/originals/92/76/59/92765932dde11ac137b9c232812e153e.jpg",
+  // },
+  // {
+  //   name: "Mila Kirova2",
+  //   avatar:
+  //     "https://i.pinimg.com/originals/92/76/59/92765932dde11ac137b9c232812e153e.jpg",
+  // },
+  // {
+  //   name: "Jane Kirova3",
+  //   avatar:
+  //     "https://i.pinimg.com/originals/92/76/59/92765932dde11ac137b9c232812e153e.jpg",
+  // },
+  // {
+  //   name: "Marta Kirova4",
+  //   avatar:
+  //     "https://i.pinimg.com/originals/92/76/59/92765932dde11ac137b9c232812e153e.jpg",
+  // },
+  // {
+  //   name: "Sofia Kirova5",
+  //   avatar:
+  //     "https://i.pinimg.com/originals/92/76/59/92765932dde11ac137b9c232812e153e.jpg",
+  // },
 ];
 const links = [
   { title: "Chats", img: require("./assets/Chats.svg"), links: "/chat" },
@@ -57,24 +65,24 @@ const links = [
 ];
 
 export default function Sidebar() {
-  console.log(links);
   return (
     <StyledSidebar>
       <StyledMain>
-        <UserTab self={true} user={users[0]} />
+        {my.length > 0 && <UserTab self={true} user={my[0]} />}
         <Searcher />
       </StyledMain>
       <StyledUsers>
-        {users.map((user, index) => {
-          return (
-            <UserTab
-              key={`id${index}`}
-              active={index === 2 ? true : false}
-              self={false}
-              user={user}
-            />
-          );
-        })}
+        {users.length > 0 &&
+          users.map((user, index) => {
+            return (
+              <UserTab
+                key={`id${index}`}
+                active={index === 2 ? true : false}
+                self={false}
+                user={user}
+              />
+            );
+          })}
       </StyledUsers>
       <StyledMenu>
         <CreateChat>

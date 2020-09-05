@@ -1,22 +1,26 @@
 import styled, { css } from "styled-components";
 
 export const StyledChat = styled.section`
+  position: relative;
   display: flex;
   flex-direction: column;
-  position: relative;
-  height: 52vh;
+  justify-content: flex-end;
+  /* padding-bottom: 57px; */
+  /* height: 52vh; */
+  min-height: 52vh;
   background: white;
   transition: all 0.5s linear;
-  ${({ fullscreen }) =>
-    fullscreen === true &&
-    css`
-      transform: translate3d(0, 100%, 0);
-      /* height: 0vh;
-      padding: 0;
-      div {
+  ${({ fullscreen, chatRegime }) => {
+    // if (chatRegime)
+    //   return css`
+    //     /* height: 91vh; */
+    //   `;
+    if (fullscreen)
+      return css`
         padding: 0;
-      } */
-    `}
+        /* transform: translate3d(0, 100%, 0); */
+      `;
+  }}
 `;
 
 export const ChatMessages = styled.div`
@@ -25,7 +29,7 @@ export const ChatMessages = styled.div`
   padding: 18px 10% 0;
   height: 80%;
   transition: all 0.5s linear;
-  overflow-y: auto;
+  /* overflow-y: auto; */
   &::-webkit-scrollbar {
     -webkit-appearance: none;
     width: 7px;

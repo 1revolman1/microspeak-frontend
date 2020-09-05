@@ -1,6 +1,9 @@
 import styled, { css } from "styled-components";
 
 export const StyledContainer = styled.div`
+  position: sticky;
+  bottom: 0;
+  z-index: 5;
   width: 100%;
   padding: 10px 10%;
   background: white;
@@ -8,15 +11,18 @@ export const StyledContainer = styled.div`
   justify-content: center;
   align-items: flex-start;
   border-radius: 11px 11px 0px 0px;
-  ${({ fullscreen }) =>
-    fullscreen === true &&
-    css`
-      height: 0;
-      input {
+  ${({ fullscreen }) => {
+    if (fullscreen) {
+      return css`
         height: 0;
         padding: 0;
-      }
-    `}
+        input {
+          height: 0;
+          padding: 0;
+        }
+      `;
+    }
+  }}
 `;
 
 export const StyledInput = styled.input`
