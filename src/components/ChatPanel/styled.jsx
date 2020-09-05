@@ -10,11 +10,12 @@ export const StyledChat = styled.section`
   ${({ fullscreen }) =>
     fullscreen === true &&
     css`
-      height: 0vh;
+      transform: translate3d(0, 100%, 0);
+      /* height: 0vh;
       padding: 0;
       div {
         padding: 0;
-      }
+      } */
     `}
 `;
 

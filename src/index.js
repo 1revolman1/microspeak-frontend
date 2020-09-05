@@ -12,6 +12,7 @@ import rootReducer from "./redux";
 import MainPage from "./pages/Main";
 import LoginPage from "./pages/LoginPage";
 import SigupPage from "./pages/SigupPage";
+import Settings from "./pages/Settings";
 
 import { AuthLayout } from "./auth";
 
@@ -44,6 +45,7 @@ ReactDOM.render(
           <Route path="/">
             <h1>fsdfsdf</h1>
           </Route> */}
+            <PrivateRoute path="/settings" component={Settings} />
             <PrivateRoute path="/admin" component={() => <h1>Admin Page</h1>} />
             <PrivateRoute exact path="/" component={MainPage} />
           </Switch>

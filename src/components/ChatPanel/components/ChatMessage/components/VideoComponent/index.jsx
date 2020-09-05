@@ -1,18 +1,18 @@
 import React, { useRef, useEffect, useState } from "react";
 import { StyledVideoInterface } from "./styled";
-import { ReactComponent as Pause } from "./assets/pause.svg";
+import { ReactComponent as Pause } from "./assets/BlackPause.svg";
+import { ReactComponent as Play } from "./assets/BlackPlay.svg";
 
 export default function VideoPlayer({ src }) {
-  const [showpause, setShowPause] = useState(true);
+  const [setshowplay, setShowPlay] = useState(true);
   const video = useRef(null);
-  const pauseBTN = useRef(null);
   const pauseFunc = function () {
     console.log("PAUSE");
-    setShowPause(false);
+    setShowPlay(true);
   };
   const playFunc = function () {
-    console.log("PLAY");
-    setShowPause(true);
+    console.log("PLAY", video.current);
+    setShowPlay(false);
   };
   useEffect(() => {
     video.current.addEventListener("pause", pauseFunc);
@@ -24,12 +24,24 @@ export default function VideoPlayer({ src }) {
   }, []);
   return (
     <>
-      <StyledVideoInterface pause={showpause}>
-        <Pause
-          onClick={(e) => {
-            video.current.play();
-          }}
-        />
+      <StyledVideoInterface pause={setshowplay}>
+        {setshowplay ? (
+          <Play
+            type="PLAY"
+            style={{ width: "100%", height: "100%", fill: "white" }}
+            onClick={(e) => {
+              video.current.play();
+            }}
+          />
+        ) : (
+          <Pause
+            type="PAUSE"
+            style={{ width: "100%", height: "100%", fill: "white" }}
+            onClick={(e) => {
+              video.current.pause();
+            }}
+          />
+        )}
       </StyledVideoInterface>
       <video ref={video} controls>
         <source src={src} type="video/mp4" />

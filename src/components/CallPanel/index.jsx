@@ -17,9 +17,13 @@ import { ReactComponent as FullScreen } from "./assets/FullScreen.svg";
 
 import Button from "./components/Button";
 
-export default function CallPanel({ fullscreen, setFullscreen }) {
+export default function CallPanel({
+  chatRegime = true,
+  fullscreen,
+  setFullscreen,
+}) {
   return (
-    <StyledCall fullscreen={fullscreen}>
+    <StyledCall chatRegime={chatRegime} fullscreen={fullscreen}>
       <StyledUserIcon>
         <img
           src="https://i.pinimg.com/originals/92/76/59/92765932dde11ac137b9c232812e153e.jpg"

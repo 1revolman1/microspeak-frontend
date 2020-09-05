@@ -24,7 +24,7 @@ export const StyledMessageContainer = styled.div`
     whose === "MY" &&
     css`
       align-items: flex-end;
-      div {
+      > div {
         background: #deb3bc;
         border-radius: 10px 0px 10px 10px;
         img,
@@ -40,7 +40,6 @@ export const StyledMessage = styled.div`
   max-width: 40%;
   background: #900020;
   border-radius: 0px 10px 10px 10px;
-  /* padding: 12px 17px 13px 23px; */
   p {
     font-family: "Roboto", sans-serif;
     font-style: normal;
@@ -74,6 +73,15 @@ export const StyledMessage = styled.div`
     }
     if (type === "VIDEO") {
       return css`
+        &:hover {
+          background: red;
+          svg[type="PAUSE"] {
+            display: block;
+          }
+        }
+        svg[type="PAUSE"] {
+          display: none;
+        }
         video {
           border-radius: 0px 10px 10px 10px;
         }

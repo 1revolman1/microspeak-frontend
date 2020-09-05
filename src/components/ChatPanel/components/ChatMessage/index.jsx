@@ -6,6 +6,7 @@ import {
   StyledMessageContainer,
 } from "./styled";
 import Video from "./components/VideoComponent";
+import File from "./components/FileInputComponent";
 // {
 //   type:["MESSAGE","IMG","FILE","VIDEO"]
 // }
@@ -36,6 +37,7 @@ export default function ChatMessage({ type, whose, date }) {
           {type === "VIDEO" && (
             <Video src="https://html5css.ru/edithtm/movie.mp4" />
           )}
+          {/* {type === "FILE" && <File />} */}
         </StyledMessage>
       </StyledMessageContainer>
     </StyledContainer>
