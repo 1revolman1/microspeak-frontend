@@ -24,6 +24,8 @@ export default function CallPanel({
   fullscreen,
   setFullscreen,
   setChatRegime,
+  setSidebarChat,
+  sidebarChat,
 }) {
   return (
     <StyledCall chatRegime={chatRegime} fullscreen={fullscreen}>
@@ -49,7 +51,15 @@ export default function CallPanel({
             </StyledSpeakerIcon>
           </StyledFriendIcons>
           <StyledNavigation>
-            <Button src={<Chart />} type={"default"} statu={true} />
+            <Button
+              toDo={() => {
+                setSidebarChat(!sidebarChat);
+                setFullscreen(!fullscreen);
+              }}
+              src={<Chart />}
+              type={"default"}
+              statu={sidebarChat}
+            />
             <StyledNavigationGroupIcon>
               <Button src={<Speaker />} type={"default"} statu={false} />
               <Button src={<Microphone />} type={"default"} statu={false} />
@@ -62,7 +72,10 @@ export default function CallPanel({
               />
             </StyledNavigationGroupIcon>
             <Button
-              toDo={(e) => setFullscreen(!fullscreen)}
+              toDo={(e) => {
+                setFullscreen(!fullscreen);
+                setSidebarChat(false);
+              }}
               src={<FullScreen />}
               type={"fullscreen"}
             />

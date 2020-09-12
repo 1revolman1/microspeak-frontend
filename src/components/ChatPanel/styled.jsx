@@ -10,10 +10,15 @@ export const StyledChat = styled.section`
   min-height: 52vh;
   background: white;
   transition: all 0.5s linear;
-  ${({ fullscreen, chatRegime }) => {
+
+  ${({ fullscreen, chatRegime, sidebarchat }) => {
     // if (chatRegime)
     //   return css`
     //     /* height: 91vh; */
+    //   `;
+    // if (sidebarchat)
+    //   return css`
+    //     overflow: auto;
     //   `;
     if (fullscreen)
       return css`
@@ -30,6 +35,16 @@ export const ChatMessages = styled.div`
   height: 80%;
   transition: all 0.5s linear;
   /* overflow-y: auto; */
+  ${({ sidebarchat }) => {
+    if (sidebarchat)
+      return css`
+        * {
+          max-width: inherit;
+        }
+      `;
+  }}
+  height: 100%;
+  overflow: auto;
   &::-webkit-scrollbar {
     -webkit-appearance: none;
     width: 7px;

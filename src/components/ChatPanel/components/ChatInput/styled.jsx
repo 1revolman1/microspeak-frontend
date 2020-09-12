@@ -11,7 +11,12 @@ export const StyledContainer = styled.div`
   justify-content: center;
   align-items: flex-start;
   border-radius: 11px 11px 0px 0px;
-  ${({ fullscreen }) => {
+  ${({ fullscreen, sidebarchat }) => {
+    if (sidebarchat) {
+      return css`
+        position: initial;
+      `;
+    }
     if (fullscreen) {
       return css`
         height: 0;

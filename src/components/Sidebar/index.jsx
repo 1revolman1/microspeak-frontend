@@ -4,6 +4,7 @@ import UserTab from "./components/UserTab";
 import Searcher from "./components/Searcher";
 import CreateChat from "./components/CreateChat";
 import MenuNavigation from "./components/MenuNavigation";
+import ChatPanel from "../ChatPanel";
 
 const my = [
   {
@@ -64,32 +65,38 @@ const links = [
   },
 ];
 
-export default function Sidebar() {
+export default function Sidebar({ sidebarchat = false }) {
   return (
-    <StyledSidebar>
-      <StyledMain>
-        {my.length > 0 && <UserTab self={true} user={my[0]} />}
-        <Searcher />
-      </StyledMain>
-      <StyledUsers>
-        {users.length > 0 &&
-          users.map((user, index) => {
-            return (
-              <UserTab
-                key={`id${index}`}
-                active={index === 2 ? true : false}
-                self={false}
-                user={user}
-              />
-            );
-          })}
-      </StyledUsers>
-      <StyledMenu>
-        <CreateChat>
-          <span> </span> Chat
-        </CreateChat>
-        <MenuNavigation links={links} />
-      </StyledMenu>
+    <StyledSidebar sidebarchat={sidebarchat}>
+      {sidebarchat ? (
+        <ChatPanel sidebarchat={sidebarchat} />
+      ) : (
+        <>
+          <StyledMain>
+            {my.length > 0 && <UserTab self={true} user={my[0]} />}
+            <Searcher />
+          </StyledMain>
+          <StyledUsers>
+            {users.length > 0 &&
+              users.map((user, index) => {
+                return (
+                  <UserTab
+                    key={`id${index}`}
+                    active={index === 2 ? true : false}
+                    self={false}
+                    user={user}
+                  />
+                );
+              })}
+          </StyledUsers>
+          <StyledMenu>
+            <CreateChat>
+              <span> </span> Chat
+            </CreateChat>
+            <MenuNavigation links={links} />
+          </StyledMenu>
+        </>
+      )}
     </StyledSidebar>
   );
 }

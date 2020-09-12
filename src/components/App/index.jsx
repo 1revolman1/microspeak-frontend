@@ -2,10 +2,10 @@ import React from "react";
 import Sidebar from "../Sidebar";
 import { StyledApp } from "./styled";
 
-export default function App({ children }) {
+export default function App({ sidebarchat, children }) {
   return (
     <>
-      <Sidebar />
+      <Sidebar sidebarchat={sidebarchat} />
       <StyledApp> {children}</StyledApp>
     </>
   );

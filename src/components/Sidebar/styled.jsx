@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 export const StyledSidebar = styled.aside`
   display: flex;
   flex-direction: column;
@@ -28,6 +28,12 @@ export const StyledSidebar = styled.aside`
   @media screen and (max-height: 450px) {
     padding-top: 15px;
   }
+  ${({ sidebarchat }) => {
+    if (sidebarchat)
+      return css`
+        padding-top: 0px;
+      `;
+  }}
 `;
 
 export const StyledMenu = styled.menu`

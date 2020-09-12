@@ -8,10 +8,11 @@ export default function ChatPanel({
   chatRegime = true,
   fullscreen,
   setFullscreen,
+  sidebarchat,
 }) {
   return (
     <StyledChat chatRegime={chatRegime} fullscreen={fullscreen}>
-      <ChatMessages>
+      <ChatMessages sidebarchat={sidebarchat}>
         <ChatMessage type="MESSAGE" whose="MY" />
         <ChatMessage type="MESSAGE" whose="OTHER" />
         <ChatMessage type="IMG" whose="OTHER" />
@@ -25,7 +26,7 @@ export default function ChatPanel({
         <ChatMessage type="VIDEO" whose="MY" />
         {/* <ChatMessage type="FILE" whose="MY" /> */}
       </ChatMessages>
-      <ChatInput fullscreen={fullscreen} />
+      <ChatInput sidebarchat={sidebarchat} fullscreen={fullscreen} />
     </StyledChat>
   );
 }
