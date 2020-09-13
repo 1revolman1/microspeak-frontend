@@ -13,7 +13,7 @@ export default function ChatPanel({
   return (
     <StyledChat chatRegime={chatRegime} fullscreen={fullscreen}>
       <ChatMessages sidebarchat={sidebarchat}>
-        <ChatMessage type="MESSAGE" whose="MY" />
+        {/* <ChatMessage type="MESSAGE" whose="MY" />
         <ChatMessage type="MESSAGE" whose="OTHER" />
         <ChatMessage type="IMG" whose="OTHER" />
         <ChatMessage type="MESSAGE" whose="OTHER" />
@@ -23,7 +23,7 @@ export default function ChatPanel({
         <ChatMessage type="MESSAGE" whose="MY" />
         <ChatMessage type="IMG" whose="MY" />
         <ChatMessage type="IMG" whose="OTHER" />
-        <ChatMessage type="VIDEO" whose="MY" />
+        <ChatMessage type="VIDEO" whose="MY" /> */}
         {/* <ChatMessage type="FILE" whose="MY" /> */}
       </ChatMessages>
       <ChatInput sidebarchat={sidebarchat} fullscreen={fullscreen} />

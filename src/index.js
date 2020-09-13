@@ -5,23 +5,21 @@ import * as serviceWorker from "./serviceWorker";
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-import { createStore } from "redux";
 import { Provider } from "react-redux";
-import rootReducer from "./redux";
+import storeThunk from "./reduxThunk";
 
 import MainPage from "./pages/Main";
 import LoginPage from "./pages/LoginPage";
 import SigupPage from "./pages/SigupPage";
 import Settings from "./pages/Settings";
 
-import { AuthLayout } from "./auth";
+import AuthLayout from "./auth/AuthLayout";
 
 import PrivateRoute from "./auth/PrivateRoute";
-const store = createStore(rootReducer);
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
+    <Provider store={storeThunk}>
       <AuthLayout>
         <Router>
           <Switch>

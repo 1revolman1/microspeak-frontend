@@ -1,10 +1,12 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { StyledSidebar, StyledMenu, StyledUsers, StyledMain } from "./styled";
 import UserTab from "./components/UserTab";
 import Searcher from "./components/Searcher";
 import CreateChat from "./components/CreateChat";
 import MenuNavigation from "./components/MenuNavigation";
 import ChatPanel from "../ChatPanel";
+import { currentUser } from "../../reduxThunk/selector/User";
 
 const my = [
   {
@@ -66,6 +68,7 @@ const links = [
 ];
 
 export default function Sidebar({ sidebarchat = false }) {
+  const MyData = useSelector(currentUser);
   return (
     <StyledSidebar sidebarchat={sidebarchat}>
       {sidebarchat ? (
@@ -73,7 +76,7 @@ export default function Sidebar({ sidebarchat = false }) {
       ) : (
         <>
           <StyledMain>
-            {my.length > 0 && <UserTab self={true} user={my[0]} />}
+            {MyData && <UserTab self={true} user={MyData} status="online" />}
             <Searcher />
           </StyledMain>
           <StyledUsers>

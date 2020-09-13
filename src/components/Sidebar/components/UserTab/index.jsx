@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
+// import { ReactComponent as Circle } from "./assets/Circle.svg";
 import {
   StyledSection,
   StyledIMGDiv,
@@ -7,7 +8,7 @@ import {
   StyledADDITIONDivGEARS,
 } from "./styled";
 
-export default function UserTab({ self, user, active }) {
+export default function UserTab({ self, user, active, status = "offline" }) {
   const typeOFState = {
     online: "#25CC49",
     offline: "#E00707",
@@ -20,7 +21,6 @@ export default function UserTab({ self, user, active }) {
   // };
   //   const self = true;
   // const active = true;
-  const [status, setStatus] = useState(typeOFState.offline);
   return (
     <StyledSection self={self} active={active}>
       <StyledIMGDiv>
@@ -36,14 +36,14 @@ export default function UserTab({ self, user, active }) {
             cx="5"
             cy="5"
             r="4.75"
-            fill={status}
+            fill={typeOFState[status]}
             stroke="white"
             strokeWidth="0.5"
           />
         </svg>
       </StyledIMGDiv>
       <StyledDATADiv active={active}>
-        <h3>{user.name}</h3>
+        <h3>{user.nickname}</h3>
       </StyledDATADiv>
       {!self && (
         <StyledADDITIONDivDOTS active={active}>

@@ -1,15 +1,27 @@
 import styled, { css } from "styled-components";
 
 export const StyledChat = styled.section`
+  /* min-height: calc(100vh - 130px); */
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   /* padding-bottom: 57px; */
   /* height: 52vh; */
-  min-height: 52vh;
+  /* min-height: 52vh; */
   background: white;
-  transition: all 0.5s linear;
+  transition: padding 0.5s linear;
+  ${({ chatRegime }) => {
+    if (chatRegime) {
+      return css`
+        min-height: calc(100vh - 130px);
+      `;
+    } else {
+      return css`
+        min-height: 52vh;
+      `;
+    }
+  }}
 
   ${({ fullscreen, chatRegime, sidebarchat }) => {
     // if (chatRegime)

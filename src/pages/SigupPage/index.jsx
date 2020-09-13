@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Card, Logo, Form, Input, Button } from "./styled";
-
-function Signup() {
-  const [auth, setAuth] = useState({ email: "", password: "" });
+export default function Signup() {
+  const [auth, setAuth] = useState({ email: "", password: "", nickname: "" });
   const clickSubmit = function (event) {
     event.preventDefault();
     fetch("http://localhost:3001/api/authentication/registration", {
@@ -14,11 +13,23 @@ function Signup() {
       body: JSON.stringify(auth),
     })
       .then((res) => res.json())
-      .then((json) => console.log(json));
+      .then((json) => {
+        console.log(json);
+        if (json.success) {
+          alert("Success registration");
+        } else alert("Failed registration");
+      });
   };
   return (
     <Card>
       <Form>
+        <Input
+          type="text"
+          placeholder="Nickname"
+          onChange={(event) =>
+            setAuth({ ...auth, nickname: event.target.value })
+          }
+        />
         <Input
           type="email"
           placeholder="email"
@@ -46,5 +57,3 @@ function Signup() {
     </Card>
   );
 }
-
-export default Signup;

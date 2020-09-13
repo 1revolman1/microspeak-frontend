@@ -1,15 +1,21 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { Card, Form, Input, Button } from "./styled";
-import { AuthContext } from "../../auth";
+import { useSelector, useDispatch } from "react-redux";
+import { isAuth } from "../../reduxThunk/selector/User";
+import { userLogin } from "../../reduxThunk/actions/User";
 
 export default function LoginPage() {
-  const { onLogin, isAuthenticated } = useContext(AuthContext);
+  //REDUX
+  const dispatch = useDispatch();
+  const isAuthenticated = useSelector(isAuth);
+  //REDUX
   const [auth, setAuth] = useState({ email: "", password: "" });
   const clickSubmit = async (event) => {
     event.preventDefault();
-    return onLogin({ ...auth });
+    return dispatch(userLogin({ ...auth }));
   };
+
   return !isAuthenticated ? (
     <Card>
       <Form>

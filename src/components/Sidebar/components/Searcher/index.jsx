@@ -1,10 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { StyledInput, StyledDiv } from "./styled";
 
 export default function Searcher() {
+  const [input, setInput] = useState(null);
+  const timer = useRef(null);
+  const onInput = function inputFunction(event) {
+    console.log(event.target.value);
+    clearTimeout(timer.current);
+    timer.current = setTimeout(() => {
+      console.log("SENT TO SERVER");
+    }, 3000);
+  };
   return (
     <StyledDiv>
-      <StyledInput type="text" placeholder="Search" />
+      <StyledInput onInput={onInput} type="text" placeholder="Search" />
       <svg
         width="20"
         height="20"
