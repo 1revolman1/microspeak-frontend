@@ -14,7 +14,7 @@ export const StyledUl = styled.ul`
     padding: 5px;
     margin: 0 17px;
     border-bottom: 4px solid transparent;
-    &:hover {
+    &.active {
       border-bottom: 4px solid white;
       img {
         opacity: 1;
@@ -23,6 +23,15 @@ export const StyledUl = styled.ul`
         color: #ffffff;
       }
     }
+    /* &:hover {
+      border-bottom: 4px solid white;
+      img {
+        opacity: 1;
+      }
+      span {
+        color: #ffffff;
+      }
+    } */
     &:first-of-type {
       margin-left: 0;
     }

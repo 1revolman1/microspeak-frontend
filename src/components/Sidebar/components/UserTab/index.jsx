@@ -8,7 +8,7 @@ import {
   StyledADDITIONDivGEARS,
 } from "./styled";
 
-export default function UserTab({ self, user, active, status = "offline" }) {
+export default function UserTab({ self, user, active, online }) {
   const typeOFState = {
     online: "#25CC49",
     offline: "#E00707",
@@ -36,7 +36,9 @@ export default function UserTab({ self, user, active, status = "offline" }) {
             cx="5"
             cy="5"
             r="4.75"
-            fill={typeOFState[status]}
+            fill={
+              online && online ? typeOFState["online"] : typeOFState["offline"]
+            }
             stroke="white"
             strokeWidth="0.5"
           />
@@ -45,11 +47,16 @@ export default function UserTab({ self, user, active, status = "offline" }) {
       <StyledDATADiv active={active}>
         <h3>{user.nickname}</h3>
       </StyledDATADiv>
-      {!self && (
-        <StyledADDITIONDivDOTS active={active}>
+      {/* {!self && (
+        <StyledADDITIONDivDOTS
+          active={active}
+          onClick={() => {
+            console.log("CLICKED");
+          }}
+        >
           <div className="dot"></div>
         </StyledADDITIONDivDOTS>
-      )}
+      )} */}
       {self && (
         <StyledADDITIONDivGEARS>
           <svg

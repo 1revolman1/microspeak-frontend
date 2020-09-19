@@ -7,14 +7,14 @@ import CreateChat from "./components/CreateChat";
 import MenuNavigation from "./components/MenuNavigation";
 import ChatPanel from "../ChatPanel";
 import { currentUser } from "../../reduxThunk/selector/User";
-
-const my = [
-  {
-    name: "Nina Kirova",
-    avatar:
-      "https://i.pinimg.com/originals/92/76/59/92765932dde11ac137b9c232812e153e.jpg",
-  },
-];
+import { getUsers } from "../../reduxThunk/selector/Friend";
+// const my = [
+//   {
+//     name: "Nina Kirova",
+//     avatar:
+//       "https://i.pinimg.com/originals/92/76/59/92765932dde11ac137b9c232812e153e.jpg",
+//   },
+// ];
 
 const users = [
   // {
@@ -48,27 +48,15 @@ const users = [
   //     "https://i.pinimg.com/originals/92/76/59/92765932dde11ac137b9c232812e153e.jpg",
   // },
 ];
-const links = [
-  { title: "Chats", img: require("./assets/Chats.svg"), links: "/chat" },
-  {
-    title: "Calls",
-    img: require("./assets/Phone.svg"),
-    links: "/calls",
-  },
-  {
-    title: "Contacts",
-    img: require("./assets/Contacts.svg"),
-    links: "/contacts",
-  },
-  {
-    title: "Notifications",
-    img: require("./assets/Notifications.svg"),
-    links: "/notifications",
-  },
-];
 
 export default function Sidebar({ sidebarchat = false }) {
+  //REDUX
   const MyData = useSelector(currentUser);
+  const users = useSelector(getUsers);
+  //REDUX
+  React.useEffect(() => {
+    console.log(users);
+  }, [users]);
   return (
     <StyledSidebar sidebarchat={sidebarchat}>
       {sidebarchat ? (
@@ -76,27 +64,30 @@ export default function Sidebar({ sidebarchat = false }) {
       ) : (
         <>
           <StyledMain>
-            {MyData && <UserTab self={true} user={MyData} status="online" />}
+            {MyData && <UserTab self={true} user={MyData} online={true} />}
             <Searcher />
           </StyledMain>
           <StyledUsers>
-            {users.length > 0 &&
+            {users &&
               users.map((user, index) => {
-                return (
-                  <UserTab
-                    key={`id${index}`}
-                    active={index === 2 ? true : false}
-                    self={false}
-                    user={user}
-                  />
-                );
+                if (user)
+                  return (
+                    <UserTab
+                      key={`id${index}`}
+                      active={index === 2 ? true : false}
+                      self={false}
+                      user={user}
+                      online={user.isOnline}
+                    />
+                  );
+                else return null;
               })}
           </StyledUsers>
           <StyledMenu>
             <CreateChat>
               <span> </span> Chat
             </CreateChat>
-            <MenuNavigation links={links} />
+            <MenuNavigation />
           </StyledMenu>
         </>
       )}

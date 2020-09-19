@@ -1,14 +1,16 @@
 import React, { useState, useEffect, useRef } from "react";
 import { StyledInput, StyledDiv } from "./styled";
-
+import { useDispatch } from "react-redux";
+import { friendFindUser } from "../../../../reduxThunk/actions/Friend";
 export default function Searcher() {
-  const [input, setInput] = useState(null);
   const timer = useRef(null);
-  const onInput = function inputFunction(event) {
-    console.log(event.target.value);
+  const dispatch = useDispatch();
+
+  const onInput = function (event) {
+    let text = event.target.value;
     clearTimeout(timer.current);
     timer.current = setTimeout(() => {
-      console.log("SENT TO SERVER");
+      dispatch(friendFindUser(text));
     }, 3000);
   };
   return (

@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import "./assets/css/index.scss";
 import * as serviceWorker from "./serviceWorker";
 
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import { Provider } from "react-redux";
 import storeThunk from "./reduxThunk";
@@ -27,7 +27,7 @@ ReactDOM.render(
             <Route path="/registration" component={SigupPage} />
             <PrivateRoute path="/settings" component={Settings} />
             <PrivateRoute path="/admin" component={() => <h1>Admin Page</h1>} />
-            <PrivateRoute exact path="/" component={MainPage} />
+            <PrivateRoute path="/" component={MainPage} />
           </Switch>
         </Router>
       </AuthLayout>

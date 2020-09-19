@@ -1,22 +1,35 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import { StyledUl } from "./styled";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useLocation,
-} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
-export default function MenuNavigation({ links }) {
+const links = [
+  { title: "Chats", img: require("../../assets/Chats.svg"), links: "/chat" },
+  {
+    title: "Calls",
+    img: require("../../assets/Phone.svg"),
+    links: "/calls",
+  },
+  {
+    title: "Contacts",
+    img: require("../../assets/Contacts.svg"),
+    links: "/contacts",
+  },
+  {
+    title: "Notifications",
+    img: require("../../assets/Notifications.svg"),
+    links: "/notifications",
+  },
+];
+
+export default function MenuNavigation() {
   return (
     <StyledUl>
       {links.map(({ title, img, links }, index) => {
         return (
-          <Link key={`id${index}`} to={links}>
+          <NavLink activeClassName="active" key={`id${index}`} to={links}>
             <img src={img} alt="img for links" />
             <span>{title}</span>
-          </Link>
+          </NavLink>
         );
       })}
     </StyledUl>

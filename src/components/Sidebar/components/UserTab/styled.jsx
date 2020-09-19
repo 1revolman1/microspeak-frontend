@@ -75,14 +75,14 @@ export const StyledADDITIONDivDOTS = styled.div`
       transition: left 0.3s ease-out;
     }
   }
-  &:hover {
+  /* &:hover {
     .dot:before {
       right: -${bias};
     }
     .dot:after {
       left: -${bias};
     }
-  }
+  } */
 `;
 
 export const StyledADDITIONDivGEARS = styled.div`
