@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 // import { ReactComponent as Circle } from "./assets/Circle.svg";
 import {
   StyledSection,
@@ -6,57 +6,88 @@ import {
   StyledDATADiv,
   StyledADDITIONDivDOTS,
   StyledADDITIONDivGEARS,
+  StyledPopUp,
 } from "./styled";
 
-export default function UserTab({ self, user, active, online }) {
+export default React.memo(function UserTab({
+  type,
+  self,
+  user,
+  active,
+  online,
+  onClick = () => console.log("click"),
+}) {
+  const [activePopUp, setActivePopUp] = useState(false);
+  const refToDots = useRef(null);
+  const popUpRef = useRef(null);
   const typeOFState = {
     online: "#25CC49",
     offline: "#E00707",
     DND: "#F7E015",
   };
-  // const user = {
-  //   name: "Nina Kirova",
-  //   avatar:
-  //     "https://i.pinimg.com/originals/92/76/59/92765932dde11ac137b9c232812e153e.jpg",
-  // };
-  //   const self = true;
-  // const active = true;
   return (
-    <StyledSection self={self} active={active}>
-      <StyledIMGDiv>
+    <StyledSection self={self} active={active} onClick={onClick}>
+      <StyledIMGDiv active={active}>
         <img src={user.avatar} alt="avatar of user" />
-        <svg
-          width="10"
-          height="10"
-          viewBox="0 0 10 10"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <circle
-            cx="5"
-            cy="5"
-            r="4.75"
-            fill={
-              online && online ? typeOFState["online"] : typeOFState["offline"]
-            }
-            stroke="white"
-            strokeWidth="0.5"
-          />
-        </svg>
+        {type === "USER" && (
+          <svg
+            width="10"
+            height="10"
+            viewBox="0 0 10 10"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="5"
+              cy="5"
+              r="4.75"
+              fill={
+                online && online
+                  ? typeOFState["online"]
+                  : typeOFState["offline"]
+              }
+              stroke="white"
+              strokeWidth="0.5"
+            />
+          </svg>
+        )}
       </StyledIMGDiv>
       <StyledDATADiv active={active}>
-        <h3>{user.nickname}</h3>
+        <h3>{user.nickname || user.name}</h3>
       </StyledDATADiv>
-      {/* {!self && (
-        <StyledADDITIONDivDOTS
-          active={active}
-          onClick={() => {
-            console.log("CLICKED");
-          }}
-        >
-          <div className="dot"></div>
+      {!self && type === "USER" && (
+        <StyledADDITIONDivDOTS ref={refToDots} active={active}>
+          <svg
+            width="25"
+            height="5"
+            viewBox="0 0 25 5"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            onClick={() => {
+              const { top, left } = refToDots.current.getBoundingClientRect();
+              popUpRef.current.style.top = `${
+                top - popUpRef.current.offsetHeight
+              }px`;
+              popUpRef.current.style.left = `${
+                left + popUpRef.current.offsetWidth / 2
+              }px`;
+              setActivePopUp(!activePopUp);
+            }}
+          >
+            <circle cx="2.5" cy="2.5" r="2.5" fill="white" />
+            <circle cx="12.5" cy="2.5" r="2.5" fill="white" />
+            <circle cx="22.5" cy="2.5" r="2.5" fill="white" />
+          </svg>
+          <StyledPopUp
+            ref={popUpRef}
+            className={activePopUp ? "popuptext show" : "popuptext"}
+          >
+            <div>Create chat</div>
+            <div>Add to contact</div>
+            <div>Remove to contact</div>
+          </StyledPopUp>
         </StyledADDITIONDivDOTS>
-      )} */}
+      )}
       {self && (
         <StyledADDITIONDivGEARS>
           <svg
@@ -77,4 +108,4 @@ export default function UserTab({ self, user, active, online }) {
       )}
     </StyledSection>
   );
-}
+});

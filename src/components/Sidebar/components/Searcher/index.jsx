@@ -1,21 +1,16 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import { StyledInput, StyledDiv } from "./styled";
-import { useDispatch } from "react-redux";
-import { friendFindUser } from "../../../../reduxThunk/actions/Friend";
-export default function Searcher() {
-  const timer = useRef(null);
-  const dispatch = useDispatch();
-
-  const onInput = function (event) {
-    let text = event.target.value;
-    clearTimeout(timer.current);
-    timer.current = setTimeout(() => {
-      dispatch(friendFindUser(text));
-    }, 3000);
-  };
+export default function Searcher({
+  type,
+  onInput = (e) => console.log(e.target.value),
+}) {
   return (
     <StyledDiv>
-      <StyledInput onInput={onInput} type="text" placeholder="Search" />
+      <StyledInput
+        onInput={onInput}
+        type="text"
+        placeholder={`Search in ${type}`}
+      />
       <svg
         width="20"
         height="20"

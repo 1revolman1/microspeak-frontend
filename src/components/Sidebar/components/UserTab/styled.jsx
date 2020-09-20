@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledSection = styled.section`
-  position: relative;
+  /* position: relative; */
   display: flex;
   align-items: center;
   /* margin: 15px 0; */
@@ -10,10 +10,14 @@ export const StyledSection = styled.section`
 `;
 
 export const StyledIMGDiv = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
   max-width: 65px;
   max-height: 65px;
   border-radius: 50%;
+  background: ${(props) => (props.active ? "#900020" : "inherit")};
   img {
     width: 100%;
     height: auto;
@@ -24,8 +28,8 @@ export const StyledIMGDiv = styled.div`
   }
   svg {
     position: absolute;
-    bottom: 3px;
-    right: 7px;
+    bottom: -3px;
+    right: 2px;
   }
 `;
 export const StyledDATADiv = styled.div`
@@ -42,47 +46,64 @@ export const StyledDATADiv = styled.div`
   }
 `;
 
-const bias = "10px";
 export const StyledADDITIONDivDOTS = styled.div`
-  position: relative;
+  /* position: relative; */
   display: flex;
   justify-self: flex-end;
   margin-left: auto;
   margin-right: 12px;
-  .dot {
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background-color: ${(props) => (props.active ? "#900020" : "white")};
-    &:before {
-      content: "";
-      position: absolute;
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background-color: ${(props) => (props.active ? "#900020" : "white")};
-      right: ${bias};
-      transition: right 0.3s ease-out;
-    }
-    &:after {
-      content: "";
-      position: absolute;
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background-color: ${(props) => (props.active ? "#900020" : "white")};
-      left: 10px;
-      transition: left 0.3s ease-out;
+  cursor: pointer;
+`;
+
+export const StyledPopUp = styled.div`
+  visibility: hidden;
+  background: white;
+  border-radius: 0px 4px 4px 0px;
+
+  color: #fff;
+  text-align: left;
+  /* padding: 8px 0; */
+  z-index: 1;
+  height: fit-content;
+  position: fixed;
+  /* margin-left: -80px; */
+  margin-left: -40px;
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 21px;
+  color: #900020;
+
+  > div {
+    padding: 8px 17px;
+    &:hover {
+      background: #deb3bc;
+      color: white;
     }
   }
-  /* &:hover {
-    .dot:before {
-      right: -${bias};
+  &.show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+  }
+  @-webkit-keyframes fadeIn {
+    from {
+      opacity: 0;
     }
-    .dot:after {
-      left: -${bias};
+    to {
+      opacity: 1;
     }
-  } */
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 `;
 
 export const StyledADDITIONDivGEARS = styled.div`

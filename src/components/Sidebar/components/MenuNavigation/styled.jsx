@@ -2,10 +2,12 @@ import styled from "styled-components";
 
 export const StyledUl = styled.ul`
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
+  /* justify-content: space-between; */
   list-style: none;
   overflow-x: auto;
-  margin-top: 110px;
+  margin-top: auto;
+  /* margin-top: 110px; */
   a {
     display: flex;
     flex-direction: column;

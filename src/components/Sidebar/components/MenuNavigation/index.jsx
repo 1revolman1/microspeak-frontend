@@ -3,22 +3,22 @@ import { StyledUl } from "./styled";
 import { NavLink } from "react-router-dom";
 
 const links = [
-  { title: "Chats", img: require("../../assets/Chats.svg"), links: "/chat" },
-  {
-    title: "Calls",
-    img: require("../../assets/Phone.svg"),
-    links: "/calls",
-  },
+  { title: "Chats", img: require("../../assets/Chats.svg"), links: "/chats" },
+  // {
+  //   title: "Calls",
+  //   img: require("../../assets/Phone.svg"),
+  //   links: "/calls",
+  // },
   {
     title: "Contacts",
     img: require("../../assets/Contacts.svg"),
     links: "/contacts",
   },
-  {
-    title: "Notifications",
-    img: require("../../assets/Notifications.svg"),
-    links: "/notifications",
-  },
+  // {
+  //   title: "Notifications",
+  //   img: require("../../assets/Notifications.svg"),
+  //   links: "/notifications",
+  // },
 ];
 
 export default function MenuNavigation() {
