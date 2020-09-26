@@ -22,3 +22,7 @@ export const getSocket = createSelector(
   getFriend,
   ({ data: { socket } }) => socket
 );
+export const getMessages = createSelector(
+  getFriend,
+  ({ chat: { messages } }) => messages
+);

@@ -6,11 +6,11 @@ import {
   StyledMessageContainer,
 } from "./styled";
 import Video from "./components/VideoComponent";
-import File from "./components/FileInputComponent";
+// import File from "./components/FileInputComponent";
 // {
 //   type:["MESSAGE","IMG","FILE","VIDEO"]
 // }
-export default function ChatMessage({ type, whose, date }) {
+export default function ChatMessage({ type, whose, date, data, nickname }) {
   return (
     <StyledContainer>
       <StyledImg whose={whose}>
@@ -20,12 +20,15 @@ export default function ChatMessage({ type, whose, date }) {
         />
       </StyledImg>
       <StyledMessageContainer whose={whose}>
-        <span>Daria, 14.28</span>
+        <span>
+          {nickname}, {date}
+        </span>
         <StyledMessage whose={whose} type={type}>
           {type === "MESSAGE" && (
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt
+              {data}
+              {/* Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt */}
             </p>
           )}
           {type === "IMG" && (

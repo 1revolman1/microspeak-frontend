@@ -11,7 +11,7 @@ export const StyledCall = styled.section`
   padding: 21px 12px;
   transition: all 0.5s linear;
   /* z-index: 5; */
-  z-index: 0;
+  z-index: 1;
   top: 0;
   position: sticky;
   ${({ fullscreen, chatRegime }) => {
