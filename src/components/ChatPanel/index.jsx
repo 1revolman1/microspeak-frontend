@@ -24,6 +24,7 @@ export default function ChatPanel({
     console.log("LAYOUT EFFECT");
     stayScrolled();
   }, [messages]);
+
   useEffect(() => {
     console.log("RECIEVE NEW MESSAGES", messages);
   }, [messages]);
