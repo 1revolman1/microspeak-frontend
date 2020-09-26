@@ -1,12 +1,11 @@
-import React, { useEffect, useRef, useLayoutEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useLayoutEffect, useRef } from "react";
+import { useSelector } from "react-redux";
 import ChatMessage from "./components/ChatMessage";
 import ChatInput from "./components/ChatInput";
-import UnreadMessages from "./components/UnreadMessages";
+// import UnreadMessages from "./components/UnreadMessages";
 import { StyledChat, ChatMessages } from "./styled";
-import { getMessages } from "../../reduxThunk/selector/Friend";
+import { getMessages, getChatUsers } from "../../reduxThunk/selector/Friend";
 import { currentUser } from "../../reduxThunk/selector/User";
-import useStayScrolled from "react-stay-scrolled";
 
 export default function ChatPanel({
   chatRegime = true,
@@ -17,34 +16,35 @@ export default function ChatPanel({
   //REDUX
   const myUser = useSelector(currentUser);
   const messages = useSelector(getMessages);
+  const users = useSelector(getChatUsers);
   //REDUX
   const listRef = useRef();
-  const { stayScrolled } = useStayScrolled(listRef);
   useLayoutEffect(() => {
-    console.log("LAYOUT EFFECT");
-    stayScrolled();
+    scrollToBottom();
   }, [messages]);
-
-  useEffect(() => {
-    console.log("RECIEVE NEW MESSAGES", messages);
-  }, [messages]);
+  const scrollToBottom = function () {
+    listRef.current.scrollIntoView({ behavior: "smooth" });
+  };
   // ChatMessages;
   return (
     <StyledChat chatRegime={chatRegime} fullscreen={fullscreen}>
-      <ChatMessages ref={listRef} sidebarchat={sidebarchat}>
+      <ChatMessages sidebarchat={sidebarchat}>
         {messages &&
-          messages.map(({ type, my, _id, data, createdAt }, index) => {
+          messages.map(({ type, _id, data, createdAt, owner }, index) => {
+            console.log(users[owner]);
             return (
               <ChatMessage
+                key={_id}
                 date={new Date(createdAt).toLocaleString()}
                 data={data}
-                key={_id}
                 type={type}
-                whose={my ? "MY" : "OTHER"}
-                nickname={my ? myUser.nickname : "Daria"}
+                whose={owner === myUser._id ? "MY" : "OTHER"}
+                nickname={users[owner][0].nickname}
+                avatar={users[owner][0].avatar}
               />
             );
           })}
+        <div style={{ float: "left", clear: "both" }} ref={listRef}></div>
         {/* <ChatMessage type="MESSAGE" whose="MY" />
         <ChatMessage type="MESSAGE" whose="OTHER" />
         <ChatMessage type="IMG" whose="OTHER" />

@@ -9,6 +9,7 @@ const initialValue = {
   },
   chat: {
     messages: [],
+    users: [],
   },
 };
 export const friend = handleActions(
@@ -43,6 +44,7 @@ export const friend = handleActions(
     //-----------GET MESSAGES FROM CHAT--------------
     [action.receiveMessages]: (draft, { payload }) => {
       draft.chat.messages = payload.msg;
+      draft.chat.users = payload.users;
     },
   },
   initialValue

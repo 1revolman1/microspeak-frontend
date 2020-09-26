@@ -26,3 +26,7 @@ export const getMessages = createSelector(
   getFriend,
   ({ chat: { messages } }) => messages
 );
+export const getChatUsers = createSelector(
+  getFriend,
+  ({ chat: { users } }) => users
+);

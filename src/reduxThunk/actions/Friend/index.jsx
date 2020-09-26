@@ -1,18 +1,26 @@
 import { createAction } from "redux-act";
+import {
+  myServerLink,
+  friendInitDataLink,
+  friendFindUserLink,
+  friendCreateChatLink,
+  friendGetAllMyChatsFromServerLink,
+} from "../../../service/routeLinks";
+
 import io from "socket.io-client";
 
 //---------------------------initial data-----------------------
 export const getInitialData = createAction("get initial data");
 
 export const friendGetInitialData = (nickname) => async (dispatch) => {
-  let response = await fetch("http://localhost:3001/api/user/initialdata", {
+  let response = await fetch(friendInitDataLink, {
     method: "GET",
     headers: {
       "Content-Type": "application/json;charset=utf-8",
     },
     credentials: "include",
   });
-  const socket = io("http://localhost:3001", {
+  const socket = io(myServerLink, {
     query: `nick=${nickname}`,
   });
   socketSendMessage(socket, dispatch);
@@ -29,7 +37,7 @@ export const findUser = createAction("find user in this web site");
 export const friendFindUser = (user) => async (dispatch) => {
   console.log(user);
   if (user.length > 0) {
-    let response = await fetch("http://localhost:3001/api/user/findeusers", {
+    let response = await fetch(friendFindUserLink, {
       method: "POST",
       headers: {
         "Content-Type": "application/json;charset=utf-8",
@@ -53,7 +61,7 @@ export const createChat = createAction("create new chat with a user");
 
 export const friendCreateChat = (user) => async (dispatch) => {
   console.log(user);
-  let response = await fetch("http://localhost:3001/api/user/findeusers", {
+  let response = await fetch(friendCreateChatLink, {
     method: "POST",
     headers: {
       "Content-Type": "application/json;charset=utf-8",
@@ -72,7 +80,7 @@ export const getMyChatsFromServer = createAction("get chats from server");
 
 export const friendGetAllMyChatsFromServer = (user) => async (dispatch) => {
   console.log(user);
-  let response = await fetch("http://localhost:3001/api/user/chats", {
+  let response = await fetch(friendGetAllMyChatsFromServerLink, {
     method: "GET",
     headers: {
       "Content-Type": "application/json;charset=utf-8",
@@ -104,12 +112,12 @@ export const friendSocketSendMessage = (message) => async (dispatch) => {
 };
 
 const socketSendMessage = function socketAction(socket, dispatch) {
-  socket.on("initial chat data", function (msg) {
-    console.log("Get initial chat data", msg);
-    dispatch(receiveMessages({ msg }));
+  socket.on("initial chat data", function ([msg, users]) {
+    // console.log("Get initial chat data", msg);
+    dispatch(receiveMessages({ msg, users }));
   });
-  socket.on("respond all chat messages from backend", function (msg) {
-    console.log("All messages from backend", msg);
-    dispatch(receiveMessages({ msg }));
+  socket.on("respond all chat messages from backend", function ([msg, users]) {
+    // console.log("All messages from backend", msg);
+    dispatch(receiveMessages({ msg, users }));
   });
 };

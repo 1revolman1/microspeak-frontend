@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Card, Logo, Form, Input, Button } from "./styled";
+import { Card, Form, Input, Button } from "./styled";
+import { userRegistrationLink } from "../../service/routeLinks";
+
 export default function Signup() {
   const [auth, setAuth] = useState({ email: "", password: "", nickname: "" });
   const clickSubmit = function (event) {
     event.preventDefault();
-    fetch("http://localhost:3001/api/authentication/registration", {
+    fetch(userRegistrationLink, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -42,13 +44,6 @@ export default function Signup() {
             setAuth({ ...auth, password: event.target.value })
           }
         />
-        {/* <Input
-          type="password"
-          placeholder="password again"
-          onChange={(event) =>
-            setAuth({ ...auth, password2: event.target.value })
-          }
-        /> */}
         <Button type="submit" onClick={clickSubmit}>
           Sign Up
         </Button>

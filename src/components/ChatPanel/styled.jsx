@@ -41,10 +41,12 @@ export const StyledChat = styled.section`
 `;
 
 export const ChatMessages = styled.div`
+  /* direction: rtl; */
+  /* transform: rotate(180deg); */
   display: flex;
   flex-direction: column;
   padding: 18px 10% 0;
-  height: 80%;
+  /* height: 80%; */
   transition: all 0.5s linear;
   /* overflow-y: auto; */
   ${({ sidebarchat }) => {

@@ -7,6 +7,7 @@ export const StyledContainer = styled.div`
   display: flex;
   margin-bottom: 40px;
   margin-top: auto;
+  /* transform: rotate(180deg); */
 `;
 
 export const StyledMessageContainer = styled.div`
@@ -101,6 +102,7 @@ export const StyledImg = styled.div`
   img {
     border-radius: 50%;
     width: 100%;
+    background: #900020;
     object-fit: cover;
   }
 `;

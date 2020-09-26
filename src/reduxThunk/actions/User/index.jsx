@@ -1,6 +1,11 @@
 import { createAction } from "redux-act";
 import * as UAParser from "ua-parser-js";
 import Fingerprint2 from "fingerprintjs2";
+import {
+  userLogoutLink,
+  userRefreshTokenLink,
+  userAuthLink,
+} from "../../../service/routeLinks";
 
 export const login = createAction("login user in site");
 export const registration = createAction("user registration on this server");
@@ -59,7 +64,7 @@ const doesHttpOnlyCookieExist = (cookiename) => {
 };
 
 export const userLogout = () => async (dispatch) => {
-  fetch("https://cleats.herokuapp.com/logout", {
+  fetch(userLogoutLink, {
     method: "POST",
     headers: {
       "Content-Type": "application/json;charset=utf-8",
@@ -80,17 +85,14 @@ export const testAuth = () => async (dispatch) => {
     let auth = Math.floor(Date.now() / 1000) < time;
     if (!auth) {
       console.log("JWT REQUEST NON AUTH");
-      let response = await fetch(
-        "http://localhost:3001/api/authentication/refresh-token",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            fingerprint,
-          }),
-          credentials: "include",
-        }
-      );
+      let response = await fetch(userRefreshTokenLink, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          fingerprint,
+        }),
+        credentials: "include",
+      });
       let json = await response.json();
       json.login && localStorage.setItem("JWT", json.accessToken);
       if (json.login) {
@@ -124,17 +126,14 @@ export const testAuth = () => async (dispatch) => {
     }
   } else if (doesHttpOnlyCookieExist("JWT")) {
     console.log("COOKIE EXIST");
-    let response = await fetch(
-      "http://localhost:3001/api/authentication/refresh-token",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          fingerprint,
-        }),
-        credentials: "include",
-      }
-    );
+    let response = await fetch(userRefreshTokenLink, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        fingerprint,
+      }),
+      credentials: "include",
+    });
     let json = await response.json();
     json.login && localStorage.setItem("JWT", json.accessToken);
     dispatch(
@@ -156,7 +155,7 @@ export const testAuth = () => async (dispatch) => {
 
 export const userLogin = (auth) => async (dispatch) => {
   const fingerprint = await _getFingerprint();
-  let response = await fetch("http://localhost:3001/api/authentication/login", {
+  let response = await fetch(userAuthLink, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
