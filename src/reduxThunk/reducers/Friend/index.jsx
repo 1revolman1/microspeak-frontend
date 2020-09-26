@@ -7,6 +7,9 @@ const initialValue = {
     socket: null,
     selectedChatIndex: null,
   },
+  chat: {
+    messages: [],
+  },
 };
 export const friend = handleActions(
   {
@@ -32,6 +35,14 @@ export const friend = handleActions(
     },
     [action.getMyChatsFromServer]: (draft, { payload }) => {
       draft.data.chats = payload.chatArray;
+    },
+    //-----------SEND MESSAGE TO CHAT----------------
+    [action.sendMessage]: (draft, { payload }) => {
+      draft.data.socket.emit("chat message to backend", payload.message);
+    },
+    //-----------GET MESSAGES FROM CHAT--------------
+    [action.receiveMessages]: (draft, { payload }) => {
+      draft.chat.messages = payload.msg;
     },
   },
   initialValue

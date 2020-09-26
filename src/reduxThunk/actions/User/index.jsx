@@ -100,6 +100,7 @@ export const testAuth = () => async (dispatch) => {
             email: json.data.email,
             avatar: json.data.avatar,
             nickname: json.data.nickname,
+            _id: json.data._id,
           })
         );
       } else {
@@ -117,6 +118,7 @@ export const testAuth = () => async (dispatch) => {
           email: data.email,
           avatar: data.avatar,
           nickname: data.nickname,
+          _id: data._id,
         })
       );
     }
@@ -141,6 +143,7 @@ export const testAuth = () => async (dispatch) => {
         email: json.data.email,
         avatar: json.data.avatar,
         nickname: json.data.nickname,
+        _id: json.data._id,
       })
     );
   } else {
@@ -171,6 +174,7 @@ export const userLogin = (auth) => async (dispatch) => {
         email: json.data.email,
         avatar: json.data.avatar,
         nickname: json.data.nickname,
+        _id: json.data._id,
       })
     );
   }

@@ -5,6 +5,7 @@ const initialValue = {
     avatar: null,
     nickname: null,
     email: null,
+    _id: null,
   },
   isAuth: null,
   loader: false,
@@ -16,12 +17,14 @@ export const user = handleActions(
       draft.data.email = payload.email;
       draft.data.avatar = payload.avatar;
       draft.data.nickname = payload.nickname;
+      draft.data._id = payload._id;
     },
     [action.logout]: (draft) => {
       draft.isAuth = false;
       draft.data.email = null;
       draft.data.avatar = null;
       draft.data.nickname = null;
+      draft.data._id = null;
     },
     [action.testAuthLoader]: (draft, { payload }) => {
       draft.loader = payload.loader;

@@ -10,7 +10,8 @@ export const StyledCall = styled.section`
   /* background: rgba(144, 0, 32, 0.3); */
   padding: 21px 12px;
   transition: all 0.5s linear;
-  z-index: 5;
+  /* z-index: 5; */
+  z-index: 0;
   top: 0;
   position: sticky;
   ${({ fullscreen, chatRegime }) => {

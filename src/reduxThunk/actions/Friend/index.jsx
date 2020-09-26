@@ -15,7 +15,7 @@ export const friendGetInitialData = (nickname) => async (dispatch) => {
   const socket = io("http://localhost:3001", {
     query: `nick=${nickname}`,
   });
-  socketFunctionActions(socket);
+  socketSendMessage(socket, dispatch);
   if (response.status === 200) {
     let { chatArray, friendArray } = await response.json();
     dispatch(getInitialData({ chatArray, friendArray, socket }));
@@ -92,9 +92,24 @@ export const friendSelectUserChat = (id) => async (dispatch) => {
   dispatch(selectUserChat({ id }));
 };
 
-const socketFunctionActions = function socketAciton(socket) {
-  socket.on("chat message", function (msg) {
-    console.log(msg, "TEST");
+//------------------action in socket------------------------------------
+export const sendMessage = createAction("send message to selected chat");
+export const receiveMessages = createAction(
+  "receive chat message from backend"
+);
+
+export const friendSocketSendMessage = (message) => async (dispatch) => {
+  console.log("MESSAGE IN ACTION", message);
+  dispatch(sendMessage({ message }));
+};
+
+const socketSendMessage = function socketAction(socket, dispatch) {
+  socket.on("initial chat data", function (msg) {
+    console.log("Get initial chat data", msg);
+    dispatch(receiveMessages({ msg }));
   });
-  window.socket = socket;
+  socket.on("respond all chat messages from backend", function (msg) {
+    console.log("All messages from backend", msg);
+    dispatch(receiveMessages({ msg }));
+  });
 };
