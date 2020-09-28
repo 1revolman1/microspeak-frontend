@@ -69,7 +69,9 @@ export const userLogout = () => async (dispatch) => {
     headers: {
       "Content-Type": "application/json;charset=utf-8",
     },
-    credentials: "include",
+    credentials: "same-origin",
+
+    // credentials: "include",
   }).then((res) => dispatch(logout()));
 };
 
@@ -91,7 +93,9 @@ export const testAuth = () => async (dispatch) => {
         body: JSON.stringify({
           fingerprint,
         }),
-        credentials: "include",
+        credentials: "same-origin",
+
+        // credentials: "include",
       });
       let json = await response.json();
       json.login && localStorage.setItem("JWT", json.accessToken);
@@ -132,7 +136,9 @@ export const testAuth = () => async (dispatch) => {
       body: JSON.stringify({
         fingerprint,
       }),
-      credentials: "include",
+      credentials: "same-origin",
+
+      // credentials: "include",
     });
     let json = await response.json();
     json.login && localStorage.setItem("JWT", json.accessToken);
@@ -160,7 +166,9 @@ export const userLogin = (auth) => async (dispatch) => {
     headers: {
       "Content-Type": "application/json",
     },
-    credentials: "include",
+    credentials: "same-origin",
+
+    // credentials: "include",
     body: JSON.stringify({ ...auth, fingerprint }),
   });
   let json = await response.json();
