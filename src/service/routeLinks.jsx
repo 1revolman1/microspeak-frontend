@@ -1,7 +1,8 @@
 // export const myServerLink = "http://localhost:3001";
 // export const myServerLink = "https://e1a2d2f90daf.ngrok.io";
 // export const myServerLink = "https://microspeak-backend.herokuapp.com";
-export const myServerLink = "http://localhost:3000";
+// export const myServerLink = "http://localhost:3000";
+export const myServerLink = "";
 //-------------------------friend------------------
 export const friendInitDataLink = `${myServerLink}/api/user/initialdata`;
 export const friendFindUserLink = `${myServerLink}/api/user/findeusers`;
